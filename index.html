@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="get_position.js" defer></script>
+    <title>画像から座標取得</title>
+</head>
+<body>
+    <h1>画像から座標取得</h1>
+    <h2>使い方</h2>
+    <h3>原点からの相対座標の求め方</h3>
+    <ul style="list-style-type: decimal">
+    <li>画像の実際の横幅と縦幅を入力する(初期値はX = 275.10cm Y = 183.00cm)</li>
+    <li>「スケール変更」ボタンをクリックするとスケールが変更される</li>
+    <li>画像をクリックして原点を決める</li>
+    <li>画像の上でカーソルを動かすと原点からの相対座標が自動で変化する</li>
+    <li>リセットするときは「原点を初期化」ボタンを押すと原点が画像の左端になる</li>    
+    </ul>
+    <h3>距離の求め方</h3>
+    <ul style="list-style-type: decimal">
+        <li>原点からの相対座標の求め方の1、2の手順を行う</li>
+        <li>クリックするごとに前回クリックした位置から距離が加算されていく</li>
+        <li>2点間の距離合計が更新される</li>
+        <li>2点間の距離合計を初期化したい時は「2点間の距離合計を初期化」ボタンをクリックすると0で初期化される</li>
+    </ul>
+    <form id="form1" action="#">
+        <p>画像の実際の横幅を入力してください：</p><input type="text" value=366.00 id="x_max">
+        <p>画像の実際の縦幅を入力してください：</p><input type="text" value=543.00 id="y_max">
+        <input type="button" onclick="showMessage()" value="スケールを変更">
+    </form>
+    <p id="set_scale">現在設定中の横幅:366.00cm 縦幅543.00cm</p>
+    <form id="form1" action="#">
+        <p style="display:inline;" id="origin">原点:x軸：-cm Y軸：-cm</p>
+        <input type="button" onclick="origin_clear()" value="原点を初期化">
+    </form>
+    <p id="sample">原点からの相対座標x軸：-cm Y軸：-cm</p>
+    <form id="form1" action="#">
+        <p style="display:inline;" id="sum_distance">2点間の距離合計:-cm</p>
+        <input type="button" onclick="sum_distance_clear()" value="2点間の距離合計を初期化">
+    </form>
+    <div class="mobile-scroll">
+        <img id="target" src="img/img.png" border="1">
+    </div>
+    <p id="img_size">画像サイズ：縦幅-px   　　横幅-px</p>
+</body>
+</html>
